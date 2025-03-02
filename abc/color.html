@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>色の世界を探検しよう！</title>
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap');
+    
+    body {
+      font-family: 'Mochiy Pop One', sans-serif;
+      background-color: #f0f9ff;
+    }
+    
+    .tab-button {
+      transition: all 0.3s;
+    }
+    
+    .tab-button:hover {
+      transform: translateY(-2px);
+    }
+    
+    .color-circle {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin: 0 auto;
+      transition: all 0.5s;
+    }
+    
+    .slider-container {
+      position: relative;
+      height: 2rem;
+    }
+    
+    input[type="range"] {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 8px;
+      border-radius: 5px;
+      background: #ddd;
+      outline: none;
+    }
+    
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    
+    .bounce {
+      animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+    
+    .character {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 120px;
+      height: 120px;
+      transition: all 0.3s;
+      z-index: 50;
+      cursor: pointer;
+    }
+    
+    .speech-bubble {
+      position: fixed;
+      bottom: 150px;
+      right: 70px;
+      max-width: 250px;
+      opacity: 0;
+      transition: all 0.3s;
+      z-index: 50;
+    }
+    
+    .fade-in {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body class="min-h-screen">
+  <div class="container mx-auto px-4 py-8">
+    <header class="text-center mb-8">
+      <h1 class="text-4xl font-bold text-indigo-600 mb-2">色の世界を探検しよう！</h1>
+      <p class="text-lg text-gray-600">色のふしぎをたのしく学ぼう♪</p>
+    </header>
+    
+    <div class="flex justify-center space-x-4 mb-8">
+      <button id="tab-rgb" class="tab-button bg-red-400 text-white py-2 px-6 rounded-full shadow-md hover:bg-red-500 focus:outline-none">RGB</button>
+      <button id="tab-hsv" class="tab-button bg-blue-400 text-white py-2 px-6 rounded-full shadow-md hover:bg-blue-500 focus:outline-none">HSV</button>
+      <button id="tab-hex" class="tab-button bg-green-400 text-white py-2 px-6 rounded-full shadow-md hover:bg-green-500 focus:outline-none">HEX</button>
+    </div>
+    
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-8">
+      <!-- RGB Tab -->
+      <div id="content-rgb" class="tab-content">
+        <div class="flex flex-col md:flex-row gap-8">
+          <div class="md:w-1/2">
+            <h2 class="text-2xl font-bold text-red-500 mb-4">RGB色ってなに？</h2>
+            <p class="mb-4">RGBは<span class="text-red-500 font-bold">赤(Red)</span>と<span class="text-green-500 font-bold">緑(Green)</span>と<span class="text-blue-500 font-bold">青(Blue)</span>の3つの色を混ぜて、いろんな色を作る方法だよ！</p>
+            <p class="mb-4">それぞれの色の量を0から255までの数字で表すんだ。0は「なし」で、255は「いっぱい」という意味だよ。</p>
+            <p class="mb-4">例えば：</p>
+            <ul class="list-disc list-inside mb-4">
+              <li><span class="text-red-500 font-bold">赤(255)</span> + <span class="text-green-500 font-bold">緑(0)</span> + <span class="text-blue-500 font-bold">青(0)</span> = <span style="color: rgb(255,0,0)">赤色</span></li>
+              <li><span class="text-red-500 font-bold">赤(255)</span> + <span class="text-green-500 font-bold">緑(255)</span> + <span class="text-blue-500 font-bold">青(0)</span> = <span style="color: rgb(255,255,0)">黄色</span></li>
+              <li><span class="text-red-500 font-bold">赤(0)</span> + <span class="text-green-500 font-bold">緑(0)</span> + <span class="text-blue-500 font-bold">青(255)</span> = <span style="color: rgb(0,0,255)">青色</span></li>
+            </ul>
+            <p>スライダーを動かして、自分だけの色を作ってみよう！</p>
+          </div>
+          <div class="md:w-1/2">
+            <div class="color-circle mb-6" id="rgb-preview"></div>
+            <div class="space-y-4">
+              <div>
+                <label class="block text-red-500 font-bold mb-2">赤 (R): <span id="r-value">128</span></label>
+                <div class="slider-container">
+                  <input type="range" id="r-slider" min="0" max="255" value="128" class="slider" style="background: linear-gradient(to right, #fff, #f00);">
+                </div>
+              </div>
+              <div>
+                <label class="block text-green-500 font-bold mb-2">緑 (G): <span id="g-value">128</span></label>
+                <div class="slider-container">
+                  <input type="range" id="g-slider" min="0" max="255" value="128" class="slider" style="background: linear-gradient(to right, #fff, #0f0);">
+                </div>
+              </div>
+              <div>
+                <label class="block text-blue-500 font-bold mb-2">青 (B): <span id="b-value">128</span></label>
+                <div class="slider-container">
+                  <input type="range" id="b-slider" min="0" max="255" value="128" class="slider" style="background: linear-gradient(to right, #fff, #00f);">
+                </div>
+              </div>
+              <div class="mt-4 p-4 bg-gray-100 rounded-lg">
+                <p class="font-mono">RGB: <span id="rgb-value">rgb(128, 128, 128)</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- HSV Tab -->
+      <div id="content-hsv" class="tab-content hidden">
+        <div class="flex flex-col md:flex-row gap-8">
+          <div class="md:w-1/2">
+            <h2 class="text-2xl font-bold text-blue-500 mb-4">HSV色ってなに？</h2>
+            <p class="mb-4">HSVは色を<span class="text-purple-500 font-bold">色相(Hue)</span>と<span class="text-pink-500 font-bold">彩度(Saturation)</span>と<span class="text-yellow-500 font-bold">明度(Value)</span>で表す方法だよ！</p>
+            <p class="mb-4">色相(H)は虹の色の位置で、0度から360度までの数字で表すよ。例えば、0度は赤、120度は緑、240度は青になるんだ。</p>
+            <p class="mb-4">彩度(S)は色のあざやかさで、0%はモノクロ、100%はとても鮮やかな色になるよ。</p>
+            <p class="mb-4">明度(V)は色の明るさで、0%は真っ黒、100%は最大の明るさだよ。</p>
+            <p>スライダーを動かして、色相、彩度、明度を変えてみよう！</p>
+          </div>
+          <div class="md:w-1/2">
+            <div class="color-circle mb-6" id="hsv-preview"></div>
+            <div class="space-y-4">
+              <div>
+                <label class="block text-purple-500 font-bold mb-2">色相 (H): <span id="h-value">180</span>°</label>
+                <div class="slider-container">
+                  <input type="range" id="h-slider" min="0" max="360" value="180" class="slider" style="background: linear-gradient(to right, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00);">
+                </div>
+              </div>
+              <div>
+                <label class="block text-pink-500 font-bold mb-2">彩度 (S): <span id="s-value">50</span>%</label>
+                <div class="slider-container">
+                  <input type="range" id="s-slider" min="0" max="100" value="50" class="slider" id="s-slider">
+                </div>
+              </div>
+              <div>
+                <label class="block text-yellow-500 font-bold mb-2">明度 (V): <span id="v-value">75</span>%</label>
+                <div class="slider-container">
+                  <input type="range" id="v-slider" min="0" max="100" value="75" class="slider" id="v-slider">
+                </div>
+              </div>
+              <div class="mt-4 p-4 bg-gray-100 rounded-lg">
+                <p class="font-mono">HSV: <span id="hsv-value">hsv(180, 50%, 75%)</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- HEX Tab -->
+      <div id="content-hex" class="tab-content hidden">
+        <div class="flex flex-col md:flex-row gap-8">
+          <div class="md:w-1/2">
+            <h2 class="text-2xl font-bold text-green-500 mb-4">HEX色ってなに？</h2>
+            <p class="mb-4">HEX（ヘックス）色は、色を<span class="font-bold">#</span>から始まる6つの数字や文字で表す方法だよ！</p>
+            <p class="mb-4">例えば、<span style="color: #FF0000">#FF0000</span>は赤色、<span style="color: #00FF00">#00FF00</span>は緑色、<span style="color: #0000FF">#0000FF</span>は青色だよ。</p>
+            <p class="mb-4">実は、HEX色はRGB色を別の方法で書いただけなんだ。最初の2つ（FF）が赤、次の2つ（00）が緑、最後の2つ（00）が青の量を表しているよ。</p>
+            <p class="mb-4">FFは255と同じ意味で、「いっぱい」という意味だよ。00は0と同じで「なし」という意味だよ。</p>
+            <p>下のカラーパレットから色を選んで、そのHEX色を見てみよう！</p>
+          </div>
+          <div class="md:w-1/2">
+            <div class="color-circle mb-6" id="hex-preview"></div>
+            <div class="mb-4">
+              <label class="block font-bold mb-2">色を選んでね:</label>
+              <input type="color" id="color-picker" class="w-full h-12 rounded cursor-pointer">
+            </div>
+            <div class="mt-4 p-4 bg-gray-100 rounded-lg">
+              <p class="font-mono">HEX: <span id="hex-value">#808080</span></p>
+            </div>
+            <div class="mt-6">
+              <h3 class="font-bold mb-2">よく使うHEX色:</h3>
+              <div class="grid grid-cols-4 gap-2">
+                <div class="color-box bg-red-500 h-12 rounded cursor-pointer" data-color="#EF4444" title="赤"></div>
+                <div class="color-box bg-blue-500 h-12 rounded cursor-pointer" data-color="#3B82F6" title="青"></div>
+                <div class="color-box bg-green-500 h-12 rounded cursor-pointer" data-color="#10B981" title="緑"></div>
+                <div class="color-box bg-yellow-400 h-12 rounded cursor-pointer" data-color="#FBBF24" title="黄"></div>
+                <div class="color-box bg-purple-500 h-12 rounded cursor-pointer" data-color="#8B5CF6" title="紫"></div>
+                <div class="color-box bg-pink-500 h-12 rounded cursor-pointer" data-color="#EC4899" title="ピンク"></div>
+                <div class="color-box bg-orange-500 h-12 rounded cursor-pointer" data-color="#F97316" title="オレンジ"></div>
+                <div class="color-box bg-teal-500 h-12 rounded cursor-pointer" data-color="#14B8A6" title="ターコイズ"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-8">
+      <h2 class="text-2xl font-bold text-indigo-600 mb-4">色で遊んでみよう！</h2>
+      <div class="flex flex-col md:flex-row gap-8">
+        <div class="md:w-1/2">
+          <h3 class="text-xl font-bold mb-3">お絵かきコーナー</h3>
+          <div class="relative">
+            <canvas id="drawing-canvas" class="border-2 border-gray-300 rounded-lg w-full h-64 bg-white cursor-crosshair"></canvas>
+            <div class="absolute bottom-2 right-2 flex space-x-2">
+              <button id="clear-canvas" class="bg-red-400 text-white p-2 rounded-full hover:bg-red-500 focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="flex justify-center mt-3 flex-wrap gap-2">
+            <div class="color-choice bg-black w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" data-color="#000000"></div>
+            <div class="color-choice bg-red-500 w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" data-color="#EF4444"></div>
+            <div class="color-choice bg-blue-500 w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" data-color="#3B82F6"></div>
+            <div class="color-choice bg-green-500 w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" data-color="#10B981"></div>
+            <div class="color-choice bg-yellow-400 w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" data-color="#FBBF24"></div>
+            <div class="color-choice bg-purple-500 w-8 h-8 rounded-full cursor-pointer border-2 border-gray-300" data-color="#8B5CF6"></div>
+          </div>
+        </div>
+        <div class="md:w-1/2">
+          <h3 class="text-xl font-bold mb-3">色当てゲーム</h3>
+          <div class="mb-4 p-4 bg-gray-100 rounded-lg text-center">
+            <p>この色はなんでしょう？</p>
+            <div id="guess-color" class="h-20 w-full rounded-lg mt-2 mb-4"></div>
+            <div class="flex space-x-2">
+              <button id="guess-rgb" class="flex-1 bg-red-400 text-white py-2 px-4 rounded-lg hover:bg-red-500 focus:outline-none">RGB</button>
+              <button id="guess-hsv" class="flex-1 bg-blue-400 text-white py-2 px-4 rounded-lg hover:bg-blue-500 focus:outline-none">HSV</button>
+              <button id="guess-hex" class="flex-1 bg-green-400 text-white py-2 px-4 rounded-lg hover:bg-green-500 focus:outline-none">HEX</button>
+            </div>
+          </div>
+          <div id="guess-result" class="p-4 bg-indigo-100 rounded-lg text-center hidden">
+            <p class="font-bold text-indigo-700">せいかい！</p>
+            <p>この色は: <span id="guess-answer" class="font-mono"></span></p>
+            <button id="new-color" class="mt-2 bg-indigo-500 text-white py-2 px-4 rounded-lg hover:bg-indigo-600 focus:outline-none">次の色</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="bg-white rounded-2xl shadow-lg p-6">
+      <h2 class="text-2xl font-bold text-indigo-600 mb-4">色のふしぎ</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-pink-100 p-4 rounded-lg">
+          <h3 class="font-bold text-pink-700 mb-2">色の三原色</h3>
+          <p>赤、緑、青の３つの色を「光の三原色」といいます。この３つの色をいろいろな量で混ぜると、たくさんの色ができるんだよ！</p>
+        </div>
+        <div class="bg-blue-100 p-4 rounded-lg">
+          <h3 class="font-bold text-blue-700 mb-2">コンピュータの色</h3>
+          <p>コンピュータの画面の色は、すべてRGB色でできています。全部で1677万色以上の色を表現できるんだよ！</p>
+        </div>
+        <div class="bg-green-100 p-4 rounded-lg">
+          <h3 class="font-bold text-green-700 mb-2">色の名前</h3>
+          <p>「スカイブルー」や「ピンク」などの色の名前も、実はRGBやHEX、HSVの数字で表すことができます。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- キャラクター -->
+  <div class="character bounce" id="character">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="60" cy="60" r="55" fill="#FFD1DC" />
+      <circle cx="40" cy="50" r="5" fill="black" />
+      <circle cx="80" cy="50" r="5" fill="black" />
+      <path d="M50 70 Q60 80 70 70" stroke="black" stroke-width="3" stroke-linecap="round" />
+    </svg>
+  </div>
+  
+  <div class="speech-bubble bg-white p-4 rounded-2xl shadow-lg" id="speech-bubble">
+    <p id="tip-text">色についてもっと知りたいことある？スライダーを動かして色を変えてみてね！</p>
+  </div>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // タブ切り替え
+      const tabs = ['rgb', 'hsv', 'hex'];
+      tabs.forEach(tab => {
+        document.getElementById(`tab-${tab}`).addEventListener('click', () => {
+          tabs.forEach(t => {
+            document.getElementById(`content-${t}`).classList.add('hidden');
+            document.getElementById(`tab-${t}`).classList.remove('ring-2', 'ring-offset-2');
+          });
+          document.getElementById(`content-${tab}`).classList.remove('hidden');
+          document.getElementById(`tab-${tab}`).classList.add('ring-2', 'ring-offset-2');
+        });
+      });
+      
+      // RGB カラー更新
+      function updateRGB() {
+        let r = document.getElementById("r-slider").value;
+        let g = document.getElementById("g-slider").value;
+        let b = document.getElementById("b-slider").value;
+        let color = `rgb(${r}, ${g}, ${b})`;
+        document.getElementById("rgb-preview").style.backgroundColor = color;
+        document.getElementById("rgb-value").textContent = color;
+      }
+      document.getElementById("r-slider").addEventListener("input", updateRGB);
+      document.getElementById("g-slider").addEventListener("input", updateRGB);
+      document.getElementById("b-slider").addEventListener("input", updateRGB);
+      
+      // HEX カラー更新
+      function updateHEX() {
+        let hex = document.getElementById("color-picker").value;
+        document.getElementById("hex-preview").style.backgroundColor = hex;
+        document.getElementById("hex-value").textContent = hex;
+      }
+      document.getElementById("color-picker").addEventListener("input", updateHEX);
+      
+      // お絵かきキャンバス
+      let canvas = document.getElementById("drawing-canvas");
+      let ctx = canvas.getContext("2d");
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+      ctx.lineWidth = 5;
+      ctx.lineCap = "round";
+      let drawing = false;
+      let color = "#000";
+      canvas.addEventListener("mousedown", () => drawing = true);
+      canvas.addEventListener("mouseup", () => drawing = false);
+      canvas.addEventListener("mousemove", function (e) {
+        if (!drawing) return;
+        ctx.strokeStyle = color;
+        ctx.lineTo(e.offsetX, e.offsetY);
+        ctx.stroke();
+      });
+      document.getElementById("clear-canvas").addEventListener("click", () => ctx.clearRect(0, 0, canvas.width, canvas.height));
+      document.querySelectorAll(".color-choice").forEach(item => {
+        item.addEventListener("click", function () {
+          color = this.dataset.color;
+        });
+      });
+    });
+  </script>
