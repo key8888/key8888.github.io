@@ -1,320 +1,279 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ひびきEDU | 教材開発センター</title>
-  <!-- SEO 基本設定 -->
-  <meta name="description" content="ひびきEDU プログラミング、教育 and more">
-  <meta name="keywords" content="プログラミング, 子供, 教育, 教材, コード学習">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hibikicode | 学習者一人ひとりに寄り添うプログラミング教育支援システム</title>
 
-  <!-- Tailwind CSS (CDN) このリンクは変更しないでください-->
-  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Favicon 等 (任意) -->
-  <link rel="icon" href="images/logo.png" type="image/png">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
+<body class="bg-gray-50 text-gray-800">
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-3G7L2C3CPN"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag() { dataLayer.push(arguments); }
-  gtag('js', new Date());
+    <!-- ヒーロー / 概要 -->
+    <header class="gradient-bg text-white py-20 px-6">
+        <div class="max-w-6xl mx-auto text-center">
 
-  gtag('config', 'G-3G7L2C3CPN');
-</script>
+            <!-- ★ ロゴっぽくしたエリア -->
+            <div class="inline-flex items-center gap-4 mb-8 logo-wrapper">
+                <div class="logo-icon">
+                    <span class="code-font text-2xl font-bold">&lt;/&gt;</span>
+                </div>
+                <div class="text-left">
+                    <div class="logo-title">
+                        hibikicode
+                    </div>
+                    <div class="logo-subtitle">
+                        プログラミング教育支援システム
+                    </div>
+                </div>
+            </div>
 
-
-<body class="bg-pink-50 text-gray-800 leading-relaxed">
-
-  <!-- ▼ ヘッダー -->
-  <header class="sticky top-0 z-50 bg-white shadow-md">
-    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-      <!-- ロゴ部分 -->
-      <div class="flex items-center">
-        <img src="images/logo.png" alt="ロゴ" class="h-10 w-auto mr-2">
-        <span class="font-bold text-2xl text-pink-600">ひびきEDU</span>
-      </div>
-      <!-- ナビゲーション -->
-      <nav class="hidden md:flex space-x-6">
-        <a href="#about" class="hover:text-pink-500 transition">料金について</a>
-        <a href="#materials" class="hover:text-pink-500 transition">教材一覧</a>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLScG1GlaiJFbEhxiU1zXRQn8pwso-yqjNh1QmRs_wARRkg4zOQ/viewform?usp=dialog"
-          class="hover:text-pink-500 transition">お問い合わせ</a>
-      </nav>
-      <!-- モバイル用ハンバーガーメニュー -->
-      <button id="menuBtn" class="md:hidden text-gray-600 focus:outline-none" aria-label="Menu">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
-          stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
-      </button>
-    </div>
-    <!-- モバイルメニュー -->
-    <div id="mobileMenu" class="hidden bg-white md:hidden border-t border-pink-200">
-      <nav class="px-4 py-2">
-        <a href="#about" class="block py-1 hover:text-pink-500 transition">料金について</a>
-        <a href="#materials" class="block py-1 hover:text-pink-500 transition">教材一覧</a>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLScG1GlaiJFbEhxiU1zXRQn8pwso-yqjNh1QmRs_wARRkg4zOQ/viewform?usp=dialog"
-          class="block py-1 hover:text-pink-500 transition">お問い合わせ</a>
-      </nav>
-    </div>
-  </header>
-  <!-- ▲ ヘッダー終わり -->
-
-  <!-- ▼ Hero セクション -->
-  <section class="relative text-white py-20 overflow-hidden">
-    <!-- 可愛い幾何学模様の背景 -->
-    <div
-      class="absolute inset-0 bg-[repeating-linear-gradient(45deg,_rgba(255,255,255,0.2)_0,_rgba(255,255,255,0.2)_2px,transparent_2px,transparent_20px)] opacity-60">
-    </div>
-    <!-- パステルグラデーションオーバーレイ -->
-    <div class="absolute inset-0 bg-gradient-to-r from-pink-300 to-yellow-300 opacity-90"></div>
-
-    <div class="relative max-w-7xl mx-auto px-4 text-center">
-      <!-- インラインスタイルで黒いストロークを追加 -->
-      <h1 class="text-4xl md:text-5xl font-bold mb-4 tracking-wide"
-        style="-webkit-text-stroke: 1px rgba(74, 5, 147, 0.388);text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);">
-        小中高生向けプログラミング教材
-      </h1>
-      <p class="max-w-2xl mx-auto mb-6 text-lg font-bold" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);">
-        楽しく学んで、自由に創造しよう。<br>
-        子供たちの可能性を引き出すプログラミング教材開発センターです。
-      </p>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLScG1GlaiJFbEhxiU1zXRQn8pwso-yqjNh1QmRs_wARRkg4zOQ/viewform?usp=dialog"
-        target="_blank" rel="noopener noreferrer"
-        class="inline-block bg-white text-pink-600 font-semibold px-6 py-3 rounded-full shadow-lg hover:bg-gray-100 transition">
-        Googleフォームでお問い合わせ
-      </a>
-    </div>
-  </section>
-  <!-- ▲ Hero セクション終わり -->
-
-
-  <!-- ▼ ひびきEDUについて -->
-  <section id="about" class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold mb-4 text-pink-600">ひびきEDUについて</h2>
-        <p class="text-gray-600">
-          子供向けに特化した学習教材とカリキュラムで、<br>
-          初心者でも安心して学べるプログラミングスクールを運営しています。
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- カード1 -->
-        <div class="p-6 border rounded-xl shadow-md hover:shadow-xl transform hover:scale-105 transition">
-          <h3 class="text-xl font-semibold mb-2 text-pink-500">学生とともに精進する教材</h3>
-          <p class="text-gray-600 mb-4">
-            学生、講師のフィードバックをもとに、随時に教材を改善しています。
-          </p>
-          <img src="images/explanation/explan1_1.png" alt="教材サンプル1" class="w-full h-auto rounded-md">
-        </div>
-        <!-- カード2 -->
-        <div class="p-6 border rounded-xl shadow-md hover:shadow-xl transform hover:scale-105 transition">
-          <h3 class="text-xl font-semibold mb-2 text-pink-500">ステップアップ式カリキュラム</h3>
-          <p class="text-gray-600 mb-4">
-            レベルに応じた学習コースで、着実にスキルを伸ばせます。
-          </p>
-          <img src="images/explanation/explan1_2.png" alt="教材サンプル2" class="w-full h-auto rounded-md">
-        </div>
-        <!-- カード3 -->
-        <div class="p-6 border rounded-xl shadow-md hover:shadow-xl transform hover:scale-105 transition">
-          <h3 class="text-xl font-semibold mb-2 text-pink-500">講師の育成をサポートする</h3>
-          <p class="text-gray-600 mb-4">
-            講師向けの研修やサポートを通じて、質の高い授業を提供します。(オンラインのみ)
-          </p>
-          <img src="images/explanation/explan1_3.png" alt="教材サンプル3" class="w-full h-auto rounded-md">
-        </div>
-        <!-- ▼ 特別なカード -->
-        <div
-          class="mt-16 p-16 min-h-[350px] col-span-1 md:col-span-3 w-full rounded-2xl border shadow-lg bg-[repeating-linear-gradient(45deg,_rgba(0,0,0,0.02)_0,_rgba(0,0,0,0.02)_8px,rgba(255,255,255,1)_8px,rgba(255,255,255,1)_16px)] flex flex-col md:flex-row items-center">
-          <!-- 講師の写真 (例) -->
-          <div class="md:w-1/3 mb-4 md:mb-0 flex justify-center">
-            <img src="images/explanation/explan1_3.png" alt="先生の写真" class="shadow-lg w-56 h-56 object-cover">
-          </div>
-          <!-- テキスト部分 -->
-          <div class="md:w-2/3 md:ml-6 text-center md:text-left">
-            <p class="text-purple-700 font-semibold text-sm mb-2">プログラミングスクールで3年実経験</p>
-            <h3 class="text-3xl font-bold text-pink-700 mb-4 leading-tight">
-              九州工業大学 大学生起業家<br class="hidden md:block">
-              しせいが創業
-            </h3>
-            <p class="text-gray-700 text-base">
-              しせい先生との連携で、より楽しく学べる環境が整っています！
+            <p class="text-2xl md:text-3xl mb-6 text-blue-200 font-medium leading-snug">
+                学習者一人ひとりに寄り添った<br class="md:hidden">
+                プログラミング教育支援システム
             </p>
-          </div>
+            <p class="max-w-3xl mx-auto text-blue-100 leading-relaxed text-lg md:text-xl mb-6">
+                hibikicode（ひびきコード）は、テキストベースのプログラミング学習において、<br>
+                学習者一人ひとりの特性を可視化し、最適な指導を可能にする「教育ケア」プラットフォームです。<br>
+                視覚的に楽しめる学習環境と、独自の学習者分析機能
+                <span class="font-semibold">「hibikicode feedback」</span>により、<br>
+                講師の経験値に依存しない質の高い個別指導を目指します。
+            </p>
+            <p class="text-base md:text-lg text-blue-200 italic">
+                "Experience × Data で、学習者の『真の力』を引き出す。"
+            </p>
         </div>
-        <!-- ▲ 特別なカード 終わり -->
+    </header>
 
+    <!-- 課題セクション -->
+    <section class="py-16 px-6 max-w-6xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-10">
+            <i class="fas fa-exclamation-circle mr-3 text-red-500"></i>
+            いま、プログラミング教育の現場で起きていること
+        </h2>
 
-      </div>
-    </div>
-  </section>
-  <!-- ▲ ひびきEDUについて 終わり -->
+        <div class="grid md:grid-cols-2 gap-8 mb-10">
+            <div class="bg-white p-7 rounded-xl shadow-md border-l-4 border-red-400">
+                <h3 class="font-bold text-xl mb-3">課題① 学習者への「ケアの欠如」</h3>
+                <p class="text-base md:text-lg text-gray-700 leading-relaxed">
+                    既存の教材は単調で、「英語が苦手」「将来像がイメージできない」といった理由から、
+                    学習意欲を失ってしまう学習者が少なくありません。<br>
+                    それでも「なんとなく続けている」生徒は、教室内で静かに埋もれていきます。
+                </p>
+            </div>
+            <div class="bg-white p-7 rounded-xl shadow-md border-l-4 border-indigo-400">
+                <h3 class="font-bold text-xl mb-3">課題② 講師側の「分析する余裕の欠如」</h3>
+                <p class="text-base md:text-lg text-gray-700 leading-relaxed">
+                    一対多数の指導では、講師が全員の躓きや潜在能力を
+                    客観的に分析する余裕がほとんどありません。<br>
+                    質問できない学習者や、独自の才能を持ちながらも
+                    画一的な指導に埋もれてしまう学習者が生まれています。
+                </p>
+            </div>
+        </div>
 
-  <!-- ▼ 教材一覧 -->
-  <section id="materials" class="py-16 bg-gray-100">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold mb-4 text-pink-600">教材一覧</h2>
-        <p class="text-gray-600">
-          ひびきEDUで使用する教材の一部を一覧でご紹介します。<br>
-          今後も新しい教材を追加予定です。
+        <p class="text-center text-gray-800 max-w-3xl mx-auto leading-relaxed text-lg md:text-xl">
+            結果として、指導の質は講師個人の勘や経験に大きく依存してしまいます。<br>
+            hibikicodeは、この状況をテクノロジーの力で変え、
+            学習者の個性に寄り添う「教育ケア」を標準装備にすることを目指します。
         </p>
-      </div>
+    </section>
 
-      <!-- 複数教材を並べるリスト -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="p-6 border rounded-xl shadow-md hover:shadow-xl transform hover:scale-105 transition">
-          <h3 class="text-xl font-semibold mb-2 text-pink-500">楽しく学ぶハードウェア入門</h3>
-          <p class="text-gray-600 mb-4">
-            マイコンボードを使って、LED点灯や音楽再生などのプログラミングを学びます。
-          </p>
-          <video src="courses_info/python_calc.mp4" loop autoplay muted class="w-full h-auto rounded-md"></video>
+    <!-- 多様な学習環境 -->
+    <section class="py-16 px-6 max-w-6xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
+            <i class="fas fa-book-open mr-3"></i>多様な学習環境で「ワクワク」を届ける
+        </h2>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="feature-card bg-white p-7 rounded-xl shadow-md border-t-4 border-blue-500">
+                <div class="text-blue-500 mb-4 text-3xl"><i class="fas fa-terminal"></i></div>
+                <h3 class="font-bold text-xl mb-2">テキストベース学習の入り口</h3>
+                <p class="text-base text-gray-700 leading-relaxed">
+                    Python を中心としたテキストベースの環境で、<br>
+                    「コードを書いて・動かして・結果を見る」流れをやさしく体験。<br>
+                    英語への苦手意識をやわらげる日本語 UI と解説も用意します。
+                </p>
+            </div>
+            <div class="feature-card bg-white p-7 rounded-xl shadow-md border-t-4 border-purple-500">
+                <div class="text-purple-500 mb-4 text-3xl"><i class="fas fa-shapes"></i></div>
+                <h3 class="font-bold text-xl mb-2">図形描画・デザイン×プログラミング</h3>
+                <p class="text-base text-gray-700 leading-relaxed">
+                    図形描画やアニメーション、p5.js 的な表現を Python で体験。<br>
+                    「目に見える作品づくり」を通じて、退屈しない学習プロセスを設計します。
+                </p>
+            </div>
+            <div class="feature-card bg-white p-7 rounded-xl shadow-md border-t-4 border-green-500">
+                <div class="text-green-500 mb-4 text-3xl"><i class="fas fa-image"></i></div>
+                <h3 class="font-bold text-xl mb-2">画像処理で数学とつながる</h3>
+                <p class="text-base text-gray-700 leading-relaxed">
+                    行列・座標・画素といった概念を、画像処理の実験を通して学習。<br>
+                    「なんのための数学か？」が、手元のコードと画面の変化で分かります。
+                </p>
+            </div>
         </div>
-        <div class="p-6 border rounded-xl shadow-md hover:shadow-xl transform hover:scale-105 transition">
-          <h3 class="text-xl font-semibold mb-2 text-pink-500">ビジュアルデザインPython</h3>
-          <p class="text-gray-600 mb-4">
-            Python初級者～中級者向け、pygameを使ったビジュアルデザインコースです。
-          </p>
-          <video src="courses_info/pygame_course.mp4" loop autoplay muted class="w-full h-auto rounded-md"></video>
-        </div>
-        <div class="p-6 border rounded-xl shadow-md hover:shadow-xl transform hover:scale-105 transition">
-          <h3 class="text-xl font-semibold mb-2 text-pink-500">Pythonと計算科学</h3>
-          <p class="text-gray-600 mb-4">
-            Pythonを使って、数学や物理の計算を学ぶ中高生向けコースです。
-          </p>
-          <video src="courses_info/python_calc.mp4" loop autoplay muted class="w-full h-auto rounded-md"></video>
-        </div>
+    </section>
 
-        <div class="p-6 border rounded-xl shadow-md hover:shadow-xl transform hover:scale-105 transition">
-          <h3 class="text-xl font-semibold mb-2 text-pink-500">Pythonで実践するアルゴリズム</h3>
-          <p class="text-gray-600 mb-4">
-            Pythonを使って、アルゴリズムとデータ構造を学ぶ中高生向けコースです。
-          </p>
-          <video src="courses_info/python_calc.mp4" loop autoplay muted class="w-full h-auto rounded-md"></video>
+    <!-- 学習者分析 hibikicode feedback -->
+    <section class="bg-white py-20 px-6 shadow-inner">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="bg-red-100 text-red-600 px-4 py-1 rounded-full text-sm md:text-base font-bold uppercase tracking-widest">
+                    Core Feature
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-4">学習者分析「hibikicode feedback」</h2>
+                <p class="text-gray-600 mt-3 text-lg md:text-xl">
+                    無意識の行動ログをデータに変え、<br class="md:hidden">
+                    学習者の「長所」と「課題」を可視化する分析エンジン。
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-gray-800 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                        1
+                    </div>
+                    <h4 class="font-bold mb-2 text-lg">特徴量抽出</h4>
+                    <p class="text-sm md:text-base text-gray-600 leading-relaxed">
+                        入力ログ、課題達成度、変数命名の傾向、<br>
+                        タイピング速度など、学習者の行動を
+                        データとして収集します。
+                    </p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-gray-800 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                        2
+                    </div>
+                    <h4 class="font-bold mb-2 text-lg">次元削減</h4>
+                    <p class="text-sm md:text-base text-gray-600 leading-relaxed">
+                        多次元の特徴量を
+                        2次元空間へマッピング。<br>
+                        学習者同士の「近さ・違い」を
+                        直感的に把握できます。
+                    </p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-gray-800 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                        3
+                    </div>
+                    <h4 class="font-bold mb-2 text-lg">クラスタリング</h4>
+                    <p class="text-sm md:text-base text-gray-600 leading-relaxed">
+                        似た特徴を持つ学習者同士をグループ化。<br>
+                        「同じような躓き方をする生徒」や
+                        「似た強みを持つ生徒」を発見します。
+                    </p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl italic">
+                        LLM
+                    </div>
+                    <h4 class="font-bold mb-2 text-lg">センスメイキング</h4>
+                    <p class="text-sm md:text-base text-gray-600 leading-relaxed">
+                        「創造性豊かだが継続力が弱い」<br>
+                        「理解するよりも暗記が得意」<br>
+                        「英語力が強い」「変数が使いこなせていない」など、<br>
+                        LLM が自然言語で意味付けし、
+                        講師に分かりやすく提示します。
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-gray-900 rounded-2xl p-8 text-white">
+                <div class="flex items-center justify-between mb-6">
+                    <h5 class="code-font text-lg">
+                        <i class="fas fa-microchip mr-2 text-blue-400"></i>
+                        hibikicode feedback - Analysis Dashboard
+                    </h5>
+                    <span class="text-xs md:text-sm text-gray-400">
+                        Status: Analyzing learner clusters...
+                    </span>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="h-52 bg-gray-800 rounded-lg flex items-center justify-center border border-gray-700 relative overflow-hidden">
+                        <div class="absolute w-2.5 h-2.5 bg-blue-400 rounded-full" style="top:20%; left:30%"></div>
+                        <div class="absolute w-2.5 h-2.5 bg-blue-400 rounded-full" style="top:26%; left:36%"></div>
+                        <div class="absolute w-2.5 h-2.5 bg-red-400 rounded-full" style="top:70%; left:60%"></div>
+                        <div class="absolute w-2.5 h-2.5 bg-red-400 rounded-full" style="top:76%; left:66%"></div>
+                        <div class="absolute w-2.5 h-2.5 bg-green-400 rounded-full" style="top:40%; left:80%"></div>
+                        <p class="text-xs md:text-sm text-gray-400 italic absolute bottom-2 right-3">
+                            UMAP learner space（イメージ）
+                        </p>
+                    </div>
+                    <div class="space-y-4 text-sm md:text-base">
+                        <div>
+                            <p class="text-blue-300 text-sm md:text-base font-bold">Cluster A: 創造性高めタイプ</p>
+                            <p class="text-gray-200 leading-relaxed">
+                                創造性が高く、アイデア発想や表現力に優れる一方で、
+                                課題の継続や基礎文法の反復がやや弱い傾向があります。<br>
+                                小さな成功体験を積み重ねる短時間課題がおすすめです。
+                            </p>
+                        </div>
+                        <div>
+                            <p class="text-red-300 text-sm md:text-base font-bold">Cluster B: 覚えて進むタイプ</p>
+                            <p class="text-gray-200 leading-relaxed">
+                                理解よりもパターン暗記が得意で、サンプルコードの写経は速いが、
+                                応用問題でつまずきやすい傾向があります。<br>
+                                日本語での概念説明と、少しずつ条件を変える練習課題が有効です。
+                            </p>
+                        </div>
+                        <div>
+                            <p class="text-green-300 text-sm md:text-base font-bold">Cluster C: 英語強みタイプ</p>
+                            <p class="text-gray-200 leading-relaxed">
+                                英単語やドキュメント読解に強みがあり、
+                                英語のエラーメッセージへの耐性も高いグループです。<br>
+                                公式ドキュメントや英語教材を活かした発展課題に誘導できます。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-sm md:text-base text-gray-600 mt-6 text-center">
+                これらのクラスタ情報は、「今この瞬間、どんな声掛けが最適か？」を判断するための
+                コンパスとして、講師に提示されます。
+            </p>
         </div>
+    </section>
 
-        <div class="p-6 border rounded-xl shadow-md hover:shadow-xl transform hover:scale-105 transition">
-          <h3 class="text-xl font-semibold mb-2 text-pink-500">教材開発中…</h3>
-          <p class="text-gray-600 mb-4">
-            ひびきEDUでは、常に新しい教材を開発しています。<br>
-            詳細は随時更新予定です。
-          </p>
-          <video src="courses_info/python_calc.mp4" loop autoplay muted class="w-full h-auto rounded-md"></video>
-        </div>
-
-        <div class="p-6 border rounded-xl shadow-md hover:shadow-xl transform hover:scale-105 transition">
-          <h3 class="text-xl font-semibold mb-2 text-pink-500">教材開発中…</h3>
-          <p class="text-gray-600 mb-4">
-            ひびきEDUでは、常に新しい教材を開発しています。<br>
-            詳細は随時更新予定です。
-          </p>
-          <video src="courses_info/python_calc.mp4" loop autoplay muted class="w-full h-auto rounded-md"></video>
-        </div>
-
-      </div>
-    </div>
-  </section>
-  <!-- ▲ 教材一覧 終わり -->
-
-  <!-- ▼ プログラミングの面白さを伝える -->
-  <section id="fun" class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold mb-4 text-pink-600">プログラミングの面白さが伝わる</h2>
-        <p class="text-gray-600">
-          プログラミングを学ぶ魅力や楽しさを、本教材を通じて体感してみましょう。
+    <!-- ストーリー / 着想の背景 -->
+    <section class="py-20 px-6 max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-8">
+            現場での 4 年間の葛藤から生まれたプラットフォーム
+        </h2>
+        <p class="leading-relaxed mb-6 text-gray-900 text-lg md:text-xl">
+            4年間にわたるプログラミング教室での講師経験のなかで、<br>
+            目の前で退屈そうにしている学習者や、
+            英語の壁に阻まれて自信を失っていく姿を何度も見てきました。<br><br>
+            また、新人講師が生徒との距離感や声掛けに戸惑い、
+            「本当はもっと力を伸ばしてあげられるはずなのに」と感じる場面も多くありました。
         </p>
-      </div>
-
-
-  </section>
-  <!-- ▲ プログラミングの面白さを伝える 終わり -->
-
-  <!-- ▼ お問い合わせ -->
-  <section id="contact" class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="text-center mb-10">
-        <h2 class="text-3xl font-bold mb-4 text-pink-600">お問い合わせ</h2>
-        <p class="text-gray-600">
-          無料体験レッスンや資料請求など、まずはお気軽にお問い合わせください。<br>
-          下記の Google フォームよりご連絡を承ります。
+        <p class="leading-relaxed mb-6 text-gray-900 text-lg md:text-xl">
+            一対多数の環境では、全員の深い躓きに気づくことは簡単ではありません。<br>
+            その無力感から生まれたのが、<br>
+            <span class="font-semibold">
+                「講師の勘や経験だけに頼らず、データに基づいて学習者の個性を守りたい」
+            </span>
+            という想いでした。
         </p>
-      </div>
-      <div class="max-w-xl mx-auto text-center">
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLScG1GlaiJFbEhxiU1zXRQn8pwso-yqjNh1QmRs_wARRkg4zOQ/viewform?usp=dialog"
-          target="_blank" rel="noopener noreferrer"
-          class="inline-block bg-gradient-to-r from-purple-300 to-pink-300 text-white px-6 py-3 rounded-full shadow-lg hover:from-purple-400 hover:to-pink-400 transition font-semibold">
-          Googleフォームでお問い合わせ
-        </a>
-      </div>
-    </div>
-  </section>
-  <!-- ▲ お問い合わせ 終わり -->
+        <p class="leading-relaxed text-gray-900 text-lg md:text-xl">
+            hibikicode は、学習者と指導者の両方を支える「教育ケア」の基盤として、<br>
+            現場の経験とデータサイエンスをつなぐことを目指しています。
+        </p>
+    </section>
 
-  <!-- ▼ フッター -->
-  <footer class="bg-purple-800 text-gray-200 py-6">
-    <div class="max-w-7xl mx-auto px-4 text-center md:text-left md:flex md:items-center md:justify-between">
-      <div class="mb-4 md:mb-0">
-        <span class="font-semibold">© 2025 hibiki EDU .</span> All rights reserved.
-      </div>
-      <div>
-        <a href="#" class="text-gray-300 hover:text-gray-100 mx-2">利用規約</a>
-        <a href="privacyPolicy.html" class="text-gray-300 hover:text-gray-100 mx-2">プライバシーポリシー</a>
-        <a href="#" class="text-gray-300 hover:text-gray-100 mx-2">運営会社</a>
-      </div>
-    </div>
-  </footer>
-  <!-- ▲ フッター 終わり -->
+    <footer class="bg-gray-100 py-10 text-center border-t">
+        <p class="text-gray-700 text-base md:text-lg">
+            &copy; 2026 hibikicode project. Empowering Programming Education.
+        </p>
+    </footer>
 
-  <!-- ▼ モバイルメニュー用スクリプト -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const menuBtn = document.getElementById("menuBtn");
-      const mobileMenu = document.getElementById("mobileMenu");
-
-      // 要素が存在するか確認
-      if (!menuBtn || !mobileMenu) return;
-
-      // 初期状態のARIA属性設定
-      menuBtn.setAttribute("aria-expanded", "false");
-
-      // メニューボタンをクリックした場合の処理
-      menuBtn.addEventListener("click", function (e) {
-        e.stopPropagation(); // クリックイベントの伝播を防止
-        mobileMenu.classList.toggle("hidden");
-
-        // aria-expanded属性をトグルで更新
-        const isExpanded = menuBtn.getAttribute("aria-expanded") === "true";
-        menuBtn.setAttribute("aria-expanded", String(!isExpanded));
-      });
-
-      // メニュー外をクリックした場合にメニューを閉じる
-      document.addEventListener("click", function (e) {
-        if (!mobileMenu.classList.contains("hidden") &&
-          !mobileMenu.contains(e.target) &&
-          e.target !== menuBtn) {
-          mobileMenu.classList.add("hidden");
-          menuBtn.setAttribute("aria-expanded", "false");
-        }
-      });
-
-      // Escapeキーでメニューを閉じる
-      document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape" && !mobileMenu.classList.contains("hidden")) {
-          mobileMenu.classList.add("hidden");
-          menuBtn.setAttribute("aria-expanded", "false");
-        }
-      });
-    });
-  </script>
-  <!-- ▲ モバイルメニュー用スクリプト 終わり -->
-
+    <!-- Custom JS -->
+    <script src="scripts/script.js"></script>
 </body>
-
 </html>
