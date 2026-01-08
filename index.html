@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +15,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles/styles.css">
 </head>
+
 <body class="bg-gray-50 text-gray-800">
 
     <!-- ヒーロー / 概要 -->
@@ -86,116 +88,176 @@
         </p>
     </section>
 
-    <!-- 多様な学習環境 -->
+    <!-- 多様な学習環境で「ワクワク」を届ける（教材コーナー） -->
     <section class="py-16 px-6 max-w-6xl mx-auto">
-        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">
             <i class="fas fa-book-open mr-3"></i>多様な学習環境で「ワクワク」を届ける
         </h2>
-        <div class="grid md:grid-cols-3 gap-6">
-            <div class="feature-card bg-white p-7 rounded-xl shadow-md border-t-4 border-blue-500">
-                <div class="text-blue-500 mb-4 text-3xl"><i class="fas fa-terminal"></i></div>
-                <h3 class="font-bold text-xl mb-2">テキストベース学習の入り口</h3>
-                <p class="text-base text-gray-700 leading-relaxed">
-                    Python を中心としたテキストベースの環境で、<br>
-                    「コードを書いて・動かして・結果を見る」流れをやさしく体験。<br>
-                    英語への苦手意識をやわらげる日本語 UI と解説も用意します。
+        <p class="text-center text-gray-700 text-base md:text-lg mb-12 leading-relaxed">
+            hibikicode は、ど初心者から数学・画像処理まで、<br class="md:hidden">
+            学習者のレベルと興味に合わせて選べる複数の学習環境を用意しています。
+        </p>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- learn -->
+            <div class="feature-card bg-white p-5 rounded-xl shadow-md border-t-4 border-blue-500">
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="font-bold text-lg">learn.hibikicode.com</h3>
+                    <span class="text-xs px-2 py-1 rounded-full bg-blue-50 text-blue-600">
+                        ど初心者向け
+                    </span>
+                </div>
+                <p class="text-sm md:text-base text-gray-700 leading-relaxed">
+                    ど初心者向けのインタラクティブなプログラミング学習環境。<br>
+                    対話的な実行画面とやさしい説明で、「はじめてコードを書く」学習者をしっかりサポートします。
                 </p>
             </div>
-            <div class="feature-card bg-white p-7 rounded-xl shadow-md border-t-4 border-purple-500">
-                <div class="text-purple-500 mb-4 text-3xl"><i class="fas fa-shapes"></i></div>
-                <h3 class="font-bold text-xl mb-2">図形描画・デザイン×プログラミング</h3>
-                <p class="text-base text-gray-700 leading-relaxed">
-                    図形描画やアニメーション、p5.js 的な表現を Python で体験。<br>
-                    「目に見える作品づくり」を通じて、退屈しない学習プロセスを設計します。
+
+            <!-- code -->
+            <div class="feature-card bg-white p-5 rounded-xl shadow-md border-t-4 border-indigo-500">
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="font-bold text-lg">code.hibikicode.com</h3>
+                    <span class="text-xs px-2 py-1 rounded-full bg-indigo-50 text-indigo-600">
+                        競技 / タイピング
+                    </span>
+                </div>
+                <p class="text-sm md:text-base text-gray-700 leading-relaxed">
+                    初心者向けの競技プログラミング環境（AtCoder 風）と、
+                    プログラミング頻出単語タイピングを提供。<br>
+                    手を動かして問題を解きながら、基礎力と入力スピードを同時に鍛えます。
                 </p>
             </div>
-            <div class="feature-card bg-white p-7 rounded-xl shadow-md border-t-4 border-green-500">
-                <div class="text-green-500 mb-4 text-3xl"><i class="fas fa-image"></i></div>
-                <h3 class="font-bold text-xl mb-2">画像処理で数学とつながる</h3>
-                <p class="text-base text-gray-700 leading-relaxed">
-                    行列・座標・画素といった概念を、画像処理の実験を通して学習。<br>
-                    「なんのための数学か？」が、手元のコードと画面の変化で分かります。
+
+            <!-- design -->
+            <div class="feature-card bg-white p-5 rounded-xl shadow-md border-t-4 border-purple-500">
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="font-bold text-lg">design.hibikicode.com</h3>
+                    <span class="text-xs px-2 py-1 rounded-full bg-purple-50 text-purple-600">
+                        p5.js の Python版
+                    </span>
+                </div>
+                <p class="text-sm md:text-base text-gray-700 leading-relaxed">
+                    p5.js の Python 版環境で、図形・アニメーション・ビジュアルデザインをコーディング。<br>
+                    「作品づくり」を通じて、座標・ループ・関数などの概念を楽しく身につけられます。
+                </p>
+            </div>
+
+            <!-- math -->
+            <a href="https://math.hibikicode.com" target="_blank"
+                class="feature-card bg-white p-5 rounded-xl shadow-md border-t-4 border-emerald-500 hover:no-underline">
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="font-bold text-lg">math.hibikicode.com</h3>
+                    <span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-600">
+                        関数グラフ / 図形（Bokeh）
+                    </span>
+                </div>
+                <p class="text-sm md:text-base text-gray-700 leading-relaxed">
+                    Python と Bokeh を用いて、関数のグラフや図形を描画しながら勉強する教材。<br>
+                    「式」と「グラフ」がリアルタイムでつながり、数学とプログラミングの橋渡しを行います。
+                </p>
+            </a>
+
+            <!-- img -->
+            <div
+                class="feature-card bg-white p-5 rounded-xl shadow-md border-t-4 border-teal-500 sm:col-span-2 lg:col-span-1">
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="font-bold text-lg">img.hibibkicode.com</h3>
+                    <span class="text-xs px-2 py-1 rounded-full bg-teal-50 text-teal-600">
+                        画像処理 / 行列
+                    </span>
+                </div>
+                <p class="text-sm md:text-base text-gray-700 leading-relaxed">
+                    Python を使って画像処理を学ぶ教材。<br>
+                    色の表示、画素、行列演算などを実際の画像を扱いながら学び、
+                    数学・情報・アートのつながりを体験できます。
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- 学習者分析 hibikicode feedback -->
+
+    <!-- Core Feature: 学習者分析「hibikicode feedback」 -->
     <section class="bg-white py-20 px-6 shadow-inner">
         <div class="max-w-5xl mx-auto">
             <div class="text-center mb-16">
-                <span class="bg-red-100 text-red-600 px-4 py-1 rounded-full text-sm md:text-base font-bold uppercase tracking-widest">
+                <span
+                    class="bg-red-100 text-red-600 px-4 py-1 rounded-full text-sm md:text-base font-bold uppercase tracking-widest">
                     Core Feature
                 </span>
-                <h2 class="text-4xl md:text-5xl font-bold mt-4">学習者分析「hibikicode feedback」</h2>
-                <p class="text-gray-600 mt-3 text-lg md:text-xl">
-                    無意識の行動ログをデータに変え、<br class="md:hidden">
-                    学習者の「長所」と「課題」を可視化する分析エンジン。
+                <h2 class="text-4xl md:text-5xl font-bold mt-4">
+                    学習者分析「hibikicode feedback」
+                </h2>
+                <p class="text-gray-600 mt-3 text-lg md:text-xl leading-relaxed">
+                    学習ログと行動のクセをデータとして捉え、<br class="md:hidden">
+                    学習者の「長所」と「課題」を客観的に可視化する分析エンジン。<br>
+                    <span class="font-semibold">feedback.hibikicode.com</span> と
+                    <span class="font-semibold">teacher.hibikicode.com</span> を通じて、<br>
+                    学習者と講師の両方を支える「教育ケア」の基盤を提供します。
                 </p>
             </div>
 
+            <!-- 分析プロセス 4ステップ -->
             <div class="grid md:grid-cols-4 gap-8 mb-12">
                 <div class="text-center">
-                    <div class="w-16 h-16 bg-gray-800 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                    <div
+                        class="w-16 h-16 bg-gray-800 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
                         1
                     </div>
-                    <h4 class="font-bold mb-2 text-lg">特徴量抽出</h4>
+                    <h3 class="font-bold mb-2 text-lg">特徴量抽出</h3>
                     <p class="text-sm md:text-base text-gray-600 leading-relaxed">
-                        入力ログ、課題達成度、変数命名の傾向、<br>
-                        タイピング速度など、学習者の行動を
-                        データとして収集します。
+                        入力ログ、課題達成度、変数命名の傾向、タイピング速度など、<br>
+                        学習者の行動を細かくデータとして収集します。
                     </p>
                 </div>
                 <div class="text-center">
-                    <div class="w-16 h-16 bg-gray-800 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                    <div
+                        class="w-16 h-16 bg-gray-800 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
                         2
                     </div>
-                    <h4 class="font-bold mb-2 text-lg">次元削減</h4>
+                    <h3 class="font-bold mb-2 text-lg">次元削減（UMAP）</h3>
                     <p class="text-sm md:text-base text-gray-600 leading-relaxed">
-                        多次元の特徴量を
-                        2次元空間へマッピング。<br>
-                        学習者同士の「近さ・違い」を
-                        直感的に把握できます。
+                        多次元の特徴量を UMAP により 2〜3次元空間へマッピング。<br>
+                        学習者同士の「近さ・違い」を直感的に把握できます。
                     </p>
                 </div>
                 <div class="text-center">
-                    <div class="w-16 h-16 bg-gray-800 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                    <div
+                        class="w-16 h-16 bg-gray-800 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
                         3
                     </div>
-                    <h4 class="font-bold mb-2 text-lg">クラスタリング</h4>
+                    <h3 class="font-bold mb-2 text-lg">クラスタリング</h3>
                     <p class="text-sm md:text-base text-gray-600 leading-relaxed">
-                        似た特徴を持つ学習者同士をグループ化。<br>
-                        「同じような躓き方をする生徒」や
-                        「似た強みを持つ生徒」を発見します。
+                        似た特徴を持つ学習者同士をグループ化し、<br>
+                        「同じような躓き方」「似た強み」を持つ生徒を発見します。
                     </p>
                 </div>
                 <div class="text-center">
-                    <div class="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl italic">
+                    <div
+                        class="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl italic">
                         LLM
                     </div>
-                    <h4 class="font-bold mb-2 text-lg">センスメイキング</h4>
+                    <h3 class="font-bold mb-2 text-lg">センスメイキング</h3>
                     <p class="text-sm md:text-base text-gray-600 leading-relaxed">
-                        「創造性豊かだが継続力が弱い」<br>
-                        「理解するよりも暗記が得意」<br>
-                        「英語力が強い」「変数が使いこなせていない」など、<br>
-                        LLM が自然言語で意味付けし、
-                        講師に分かりやすく提示します。
+                        「創造性豊かだが継続力が弱い」「理解より暗記型」「英語に強い」など、<br>
+                        LLM が自然言語で意味付けし、講師に分かりやすく提示します。
                     </p>
                 </div>
             </div>
 
-            <div class="bg-gray-900 rounded-2xl p-8 text-white">
+            <!-- UMAPイメージ＋クラスタ例 -->
+            <div class="bg-gray-900 rounded-2xl p-8 text-white mb-10">
                 <div class="flex items-center justify-between mb-6">
-                    <h5 class="code-font text-lg">
+                    <h3 class="code-font text-lg">
                         <i class="fas fa-microchip mr-2 text-blue-400"></i>
                         hibikicode feedback - Analysis Dashboard
-                    </h5>
+                    </h3>
                     <span class="text-xs md:text-sm text-gray-400">
                         Status: Analyzing learner clusters...
                     </span>
                 </div>
                 <div class="grid md:grid-cols-2 gap-8 items-center">
-                    <div class="h-52 bg-gray-800 rounded-lg flex items-center justify-center border border-gray-700 relative overflow-hidden">
+                    <div
+                        class="h-52 bg-gray-800 rounded-lg flex items-center justify-center border border-gray-700 relative overflow-hidden">
                         <div class="absolute w-2.5 h-2.5 bg-blue-400 rounded-full" style="top:20%; left:30%"></div>
                         <div class="absolute w-2.5 h-2.5 bg-blue-400 rounded-full" style="top:26%; left:36%"></div>
                         <div class="absolute w-2.5 h-2.5 bg-red-400 rounded-full" style="top:70%; left:60%"></div>
@@ -207,44 +269,76 @@
                     </div>
                     <div class="space-y-4 text-sm md:text-base">
                         <div>
-                            <p class="text-blue-300 text-sm md:text-base font-bold">Cluster A: 創造性高めタイプ</p>
+                            <p class="text-blue-300 font-bold">Cluster A: 創造性高めタイプ</p>
                             <p class="text-gray-200 leading-relaxed">
-                                創造性が高く、アイデア発想や表現力に優れる一方で、
-                                課題の継続や基礎文法の反復がやや弱い傾向があります。<br>
-                                小さな成功体験を積み重ねる短時間課題がおすすめです。
+                                アイデア発想や表現力に優れる一方で、
+                                課題の継続や基礎文法の反復がやや弱い傾向。<br>
+                                小さな成功体験を積み重ねる短時間課題が有効です。
                             </p>
                         </div>
                         <div>
-                            <p class="text-red-300 text-sm md:text-base font-bold">Cluster B: 覚えて進むタイプ</p>
+                            <p class="text-red-300 font-bold">Cluster B: 覚えて進むタイプ</p>
                             <p class="text-gray-200 leading-relaxed">
-                                理解よりもパターン暗記が得意で、サンプルコードの写経は速いが、
-                                応用問題でつまずきやすい傾向があります。<br>
-                                日本語での概念説明と、少しずつ条件を変える練習課題が有効です。
+                                サンプルコードの写経は速いが、応用問題でつまずきやすいグループ。<br>
+                                日本語での概念説明と「条件だけ少し変える」練習が効果的です。
                             </p>
                         </div>
                         <div>
-                            <p class="text-green-300 text-sm md:text-base font-bold">Cluster C: 英語強みタイプ</p>
+                            <p class="text-green-300 font-bold">Cluster C: 英語強みタイプ</p>
                             <p class="text-gray-200 leading-relaxed">
-                                英単語やドキュメント読解に強みがあり、
-                                英語のエラーメッセージへの耐性も高いグループです。<br>
-                                公式ドキュメントや英語教材を活かした発展課題に誘導できます。
+                                英文ドキュメントやエラーメッセージへの耐性が高いグループ。<br>
+                                公式ドキュメント・英語教材を活かした発展課題に誘導できます。
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <p class="text-sm md:text-base text-gray-600 mt-6 text-center">
-                これらのクラスタ情報は、「今この瞬間、どんな声掛けが最適か？」を判断するための
-                コンパスとして、講師に提示されます。
+            <!-- 学生分析サイト紹介 -->
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- feedback.hibikicode.com -->
+                <div class="feature-card bg-white p-5 rounded-xl shadow-md border-l-4 border-rose-500">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="font-bold text-lg">feedback.hibikicode.com</h3>
+                        <span class="text-xs px-2 py-1 rounded-full bg-rose-50 text-rose-600">
+                            学生の可視化
+                        </span>
+                    </div>
+                    <p class="text-sm md:text-base text-gray-700 leading-relaxed">
+                        学生の得意・不得意、やる気、理解度などを客観的に可視化するダッシュボード。<br>
+                        入力ログや課題達成度、変数命名の傾向などをもとに、
+                        「どこを伸ばし、どこを支えるべきか」を一目で確認できます。
+                    </p>
+                </div>
+
+                <!-- teacher.hibikicode.com -->
+                <div class="feature-card bg-white p-5 rounded-xl shadow-md border-l-4 border-gray-500">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="font-bold text-lg">teacher.hibikicode.com</h3>
+                        <span class="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-700">
+                            講師向けガイド
+                        </span>
+                    </div>
+                    <p class="text-sm md:text-base text-gray-700 leading-relaxed">
+                        講師が hibikicode を最大限に活用するためのガイド・チュートリアルサイト。<br>
+                        システムの操作方法だけでなく、「どのようにケアの質を高めるか」という観点からの
+                        活用事例や指導のヒントも提供します。
+                    </p>
+                </div>
+            </div>
+
+            <p class="text-sm md:text-base text-gray-600 mt-8 text-center leading-relaxed">
+                教材群で「学ぶ体験」を支え、hibikicode feedback で「理解・やる気・特性」を可視化する。<br>
+                この両輪によって、講師は直感だけでなくデータにも支えられた「最適な声掛け」を実践できます。
             </p>
         </div>
     </section>
 
+
     <!-- ストーリー / 着想の背景 -->
     <section class="py-20 px-6 max-w-4xl mx-auto text-center">
         <h2 class="text-3xl md:text-4xl font-bold mb-8">
-            現場での 4 年間の葛藤から生まれたプラットフォーム
+            現場での 4 年間の経験から生まれたプラットフォーム
         </h2>
         <p class="leading-relaxed mb-6 text-gray-900 text-lg md:text-xl">
             4年間にわたるプログラミング教室での講師経験のなかで、<br>
@@ -276,4 +370,5 @@
     <!-- Custom JS -->
     <script src="scripts/script.js"></script>
 </body>
+
 </html>
