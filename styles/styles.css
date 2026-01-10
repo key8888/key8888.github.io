@@ -91,3 +91,14 @@ body {
         font-size: 17px;
     }
 }
+
+/* styles.css または <style> タグ内に追加 */
+wbr {
+  display: inline-block;
+}
+
+/* もし改行が全く起きない場合は、対象要素にこれを追加 */
+header p, section p, .feature-card p, h2, h3 {
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
